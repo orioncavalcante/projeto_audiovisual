@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diário_Lab05.txt - Notepad</title>
+
+    <style>
+        /* ============================================================
+           RESET E CONFIGURAÇÕES GERAIS (ESTILO XP MANTIDO)
+           ============================================================ */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #004e98;
+            background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+
+            font-family: Tahoma, 'Trebuchet MS', Arial, sans-serif;
+            font-size: 12px;
+            color: #000000;
+            line-height: 1.4;
+            cursor: default; 
+            padding-bottom: 50px; 
+        }
+
+        a { color: #0000ee; text-decoration: underline; }
+        a:hover { color: #ff0000; }
+
+        /* ============================================================
+           NOVO LAYOUT BASEADO NO SEU RASCUNHO (2 COLUNAS + HEADER/FOOTER)
+           ============================================================ */
+        #desktop-area {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 10px;
+        }
+
+        .layout-row {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+            align-items: flex-start;
+        }
+
+        .layout-main { flex: 2; display: flex; flex-direction: column; gap: 15px; }
+        .layout-sidebar { flex: 1; min-width: 280px; display: flex; flex-direction: column; gap: 15px; }
+
+        /* ============================================================
+           JANELAS DO WINDOWS XP (LUNA THEME MANTIDO)
+           ============================================================ */
+        .xp-window {
+            background-color: #0053e0;
+            border-radius: 8px 8px 0 0;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .xp-titlebar {
+            background: linear-gradient(to bottom, #0058e6 0%, #3a93ff 8%, #288eff 40%, #127dff 88%, #036bfe 100%);
+            padding: 3px 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #003c74;
+        }
+
+        .xp-title {
+            color: #ffffff;
+            font-family: 'Trebuchet MS', Tahoma, sans-serif;
+            font-weight: bold;
+            font-size: 13px;
+            text-shadow: 1px 1px 1px #000000;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .xp-controls { display: flex; gap: 2px; }
+        
+        .xp-btn {
+            width: 20px; height: 20px;
+            border-radius: 3px;
+            border: 1px solid #fff;
+            color: white; font-size: 11px; font-weight: bold;
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer;
+            box-shadow: inset -1px -1px 1px rgba(0,0,0,0.3), inset 1px 1px 1px rgba(255,255,255,0.5);
+        }
+        .btn-min { background: linear-gradient(to bottom, #8fa3e8 0%, #3661bd 50%, #446fce 100%); border-color: #bbcaff; }
+        .btn-max { background: linear-gradient(to bottom, #8fa3e8 0%, #3661bd 50%, #446fce 100%); border-color: #bbcaff; }
+        .btn-close { background: linear-gradient(to bottom, #e38271 0%, #d84b31 10%, #cd2b11 50%, #e05e46 100%); border-color: #fcaea2; font-family: Arial; }
+        .btn-close:active { background: #cd2b11; box-shadow: inset 1px 1px 2px #000; }
+
+        .xp-content {
+            background-color: #ece9d8;
+            padding: 10px;
+            border-left: 3px solid #0053e0;
+            border-right: 3px solid #0053e0;
+            border-bottom: 3px solid #0053e0;
+            flex: 1;
+        }
+
+        .xp-document {
+            background-color: #ffffff;
+            border: 1px solid #7f9db9;
+            padding: 12px;
+            box-shadow: inset 1px 1px 2px #eee;
+        }
+
+        /* ============================================================
+           COMPONENTES ESPECÍFICOS MANTIDOS
+           ============================================================ */
+        .xp-button {
+            background: linear-gradient(to bottom, #f2f2f2 0%, #ebeadb 100%);
+            border: 1px solid #003c74;
+            border-radius: 3px;
+            padding: 4px 12px;
+            font-family: Tahoma; font-size: 11px;
+            cursor: pointer; color: #000;
+        }
+        .xp-button:hover { background: linear-gradient(to bottom, #fff 0%, #f2f2f2 100%); border-color: #00a8ff; }
+        .xp-button:active { background: #e0dcd3; box-shadow: inset 1px 1px 2px #999; }
+
+        .xp-input {
+            background: #ffffff;
+            border: 1px solid #7f9db9;
+            padding: 3px; width: 100%;
+            font-family: Tahoma; font-size: 11px; margin-bottom: 5px;
+        }
+
+        .xp-menubar {
+            background-color: #ece9d8;
+            padding: 2px 5px;
+            border-bottom: 1px solid #fff;
+            display: flex; gap: 15px; font-size: 11px;
+            border-left: 3px solid #0053e0; border-right: 3px solid #0053e0;
+        }
+        .xp-menubar span { cursor: pointer; }
+        .xp-menubar span:hover { background-color: #316ac5; color: #fff; }
+
+        .alert-text { color: #cc0000; font-weight: bold; }
+        
+        .shoutbox-area {
+            height: 150px; overflow-y: scroll;
+            background: #fff; border: 1px solid #7f9db9;
+            padding: 5px; margin-bottom: 8px; font-size: 11px;
+        }
+        .shout-msg { border-bottom: 1px dotted #ccc; padding: 3px 0; }
+        .shout-time { color: #888; }
+        .shout-name { font-weight: bold; color: #316ac5; }
+
+        .image-box { border: 1px solid #aaa; padding: 2px; background: #fff; margin-bottom: 10px; }
+        .image-box img { max-width: 100%; display: block; }
+
+        .xp-sidebar-group {
+            background: #ffffff;
+            border: 1px solid #fff; border-radius: 3px; margin-bottom: 10px;
+        }
+        .xp-sidebar-header {
+            background: linear-gradient(to right, #f0f0f0, #ffffff);
+            color: #215dc6; font-weight: bold; padding: 3px 8px;
+            border-top: 1px solid #fff; border-left: 1px solid #fff;
+        }
+        .xp-sidebar-content { padding: 5px 8px; }
+        .nav-link { display: flex; align-items: center; gap: 5px; margin-bottom: 5px; cursor: pointer; color: #215dc6; text-decoration: underline; }
+
+        /* ============================================================
+           BARRA DE TAREFAS (TASKBAR)
+           ============================================================ */
+        #taskbar {
+            position: fixed; bottom: 0; left: 0; width: 100%; height: 30px;
+            background: linear-gradient(to bottom, #245edb 0%, #0f46c6 10%, #0634a4 100%);
+            border-top: 1px solid #0053e0;
+            z-index: 9999; display: flex; align-items: center; justify-content: space-between;
+        }
+
+        .start-btn {
+            background: linear-gradient(to bottom, #429f27 0%, #36851f 10%, #296118 100%);
+            border-radius: 0 10px 10px 0;
+            color: white; font-style: italic; font-weight: bold; font-family: 'Trebuchet MS', Tahoma, sans-serif; font-size: 16px;
+            padding: 0 20px 0 10px; height: 100%; display: flex; align-items: center;
+            box-shadow: 2px 0 3px rgba(0,0,0,0.3); text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+            cursor: pointer; border-right: 1px solid #1a420f; border-top: 1px solid #62c444;
+        }
+        .start-btn:hover { background: linear-gradient(to bottom, #50ba31 0%, #3b9423 10%, #30731d 100%); }
+
+        .open-apps {
+            flex: 1; display: flex; padding: 0 10px; gap: 3px; align-items: center;
+        }
+        .app-tab {
+            background: #3b74e6; border: 1px solid #1240a6; border-radius: 3px;
+            color: white; padding: 3px 10px; font-size: 11px; cursor: pointer;
+            box-shadow: inset 1px 1px 1px rgba(255,255,255,0.3);
+            max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .app-tab.active { background: #1f4bb5; box-shadow: inset 1px 1px 3px rgba(0,0,0,0.5); font-weight: bold; }
+
+        .system-tray {
+            background: linear-gradient(to bottom, #119eea 0%, #0f82d2 10%, #0a70c0 100%);
+            border-left: 1px solid #095392; height: 100%; display: flex; align-items: center; gap: 10px;
+            padding: 0 15px; color: white; font-size: 11px;
+            box-shadow: inset 1px 0 1px #33b8ff;
+        }
+
+        #error-dialog {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 350px; z-index: 10000;
+        }
+        .overlay {
+            position: fixed; top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.2); z-index: 9998;
+        }
+
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
+        .blink { animation: blink 1s infinite; }
+
+        /* Estilo rápido para vídeos na barra lateral */
+        .video-box { width: 100%; height: 120px; background: #000; border: 1px solid #7f9db9; display: flex; justify-content: center; align-items: center; color: #fff; margin-bottom: 10px; cursor: pointer; }
+        .video-box:hover { border-color: #00a8ff; }
+
+    </style>
+</head>
+<body>
+
+<div class="overlay" id="overlay" style="display:none;"></div>
+
+<div class="xp-window" id="error-dialog" style="display:none;">
+    <div class="xp-titlebar">
+        <div class="xp-title"><span style="font-size:16px;">⚠</span> Erro no Sistema LAB_05</div>
+        <div class="xp-controls"><div class="xp-btn btn-close" onclick="closeError()">X</div></div>
+    </div>
+    <div class="xp-content" style="display: flex; gap: 15px; align-items: center; padding: 20px;">
+        <div style="font-size: 32px; color: #cc0000;">ⓧ</div>
+        <div>
+            <b>Atenção:</b> CÁSSIO.EXE parou de responder.<br><br>
+            O arquivo 'Laboratório_Fundos.avi' foi corrompido. Não tente abrir a porta.
+        </div>
+    </div>
+    <div class="xp-content" style="border-top: none; text-align: center; padding-top: 0; padding-bottom: 15px;">
+        <button class="xp-button" onclick="closeError()">OK</button>
+    </div>
+</div>
+
+<div id="desktop-area">
+
+    <div class="xp-window">
+        <div class="xp-titlebar">
+            <div class="xp-title">Internet Explorer</div>
+            <div class="xp-controls">
+                <div class="xp-btn btn-min">_</div>
+                <div class="xp-btn btn-max">□</div>
+                <div class="xp-btn btn-close">X</div>
+            </div>
+        </div>
+        <div class="xp-content xp-document" style="text-align: center; padding: 20px; box-shadow: none;">
+            <h1 style="font-family: 'Trebuchet MS', sans-serif; font-size: 28px; color: #003c74; letter-spacing: 2px;">
+                SEU TÍTULO AQUI
+            </h1>
+        </div>
+    </div>
+
+    <div class="layout-row">
+
+        <div class="layout-main">
+            
+            <div class="xp-window">
+                <div class="xp-titlebar">
+                    <div class="xp-title">📝 Diário_Lab05.txt - Notepad</div>
+                    <div class="xp-controls">
+                        <div class="xp-btn btn-min">_</div><div class="xp-btn btn-close">X</div>
+                    </div>
+                </div>
+                <div class="xp-menubar">
+                    <span>File</span><span>Edit</span><span>Format</span><span>View</span><span>Help</span>
+                </div>
+                <div class="xp-content xp-document" style="font-family: 'Courier New', Courier, monospace; font-size: 13px;">
+                    
+                    <div class="image-box">
+                        <img src="https://media.giphy.com/media/l41YkxvU8c7J7Bba0/giphy.gif" alt="Gif Principal" style="width: 100%; height: 200px; object-fit: cover;">
+                    </div>
+                    
+                    <div style="text-align: justify; margin-top: 15px;">
+                        <b>O QUE É ISSO?</b><br><br>
+                        Bem-vindos ao primeiro e único blog da cidade de Tainá, um espaço criado para expor aquilo que muitos preferem ignorar. Por trás da aparência tranquila e das ruas silenciosas, existem histórias mal contadas, acontecimentos estranhos e verdades que nunca chegaram ao conhecimento público.<br><br>
+                        
+                        Este blog nasce com o objetivo de investigar, reunir relatos e conectar pistas que, por muito tempo, foram deixadas de lado. Aqui, nada será tratado como coincidência sem antes ser questionado. Cada detalhe importa, cada memória pode esconder algo maior.
+                        <br><br>
+                        Se você sempre sentiu que há algo errado em Tainá, este é o lugar certo. As respostas podem não ser confortáveis, mas elas existem — e aos poucos, tudo será revelado.
+                    </div>
+                </div>
+            </div>
+
+            <div class="xp-window">
+                <div class="xp-titlebar">
+                    <div class="xp-title">📷 Visualizador de Imagens e Fax do Windows</div>
+                    <div class="xp-controls"><div class="xp-btn btn-close">X</div></div>
+                </div>
+                <div class="xp-content xp-document">
+                    <div style="display: flex; gap: 15px;">
+                        <div class="image-box" style="flex-shrink: 0; width: 150px; margin-bottom: 0;">
+                            <img src="https://media.giphy.com/media/3o7aD2d7hy9ktXNDP2/giphy.gif" alt="Relato" style="width: 100%; height: 120px; object-fit: cover;">
+                        </div>
+                        <div>
+                            <h3 style="color: #003c74; margin-bottom: 5px;">04/10/2007</h3>
+                            <b>Relato Bizarro</b><br>
+                            Relato bizarro de alguém da cidade que viu algo muito estranho acontecendo no laboratório dos fundos. As descrições não batem com nada natural. Cássio ainda não atende o telefone.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="layout-sidebar">
+
+            <div class="xp-window">
+                <div class="xp-titlebar">
+                    <div class="xp-title">📁 Pastas do Projeto</div>
+                </div>
+                <div class="xp-content">
+                    <div class="xp-sidebar-group">
+                        <div class="xp-sidebar-header">Navegação</div>
+                        <div class="xp-sidebar-content">
+                            <div class="nav-link">▶ Relatos</div>
+                            <div class="nav-link">▶ Vídeos</div>
+                            <div class="nav-link">▶ Fotos</div>
+                            <div class="nav-link" style="color: red;">▶ Fórum Oculto</div>
+                        </div>
+                    </div>
+                    <button class="xp-button" onclick="showError()" style="width: 100%; font-weight: bold; color: red; margin-top: 5px;">Não Clique Aqui</button>
+                </div>
+            </div>
+
+            <div class="xp-window">
+                <div class="xp-titlebar">
+                    <div class="xp-title">🎵 Windows Media Player</div>
+                    <div class="xp-controls"><div class="xp-btn btn-close">X</div></div>
+                </div>
+                <div class="xp-content xp-document" style="background-color: #ece9d8;">
+                    <b>Vlog Número 1</b>
+                    
+                    <div class="video-box" onclick="alert('Abrindo vídeo em nova janela...')">
+                        <span style="font-size: 30px;">▶</span>
+                    </div>
+
+                    <div style="background: #fff; border: 1px solid #7f9db9; padding: 5px; margin-bottom: 10px;">
+                        <a href="#" style="display: block; margin-bottom: 3px;">▶ Livro</a>
+                        <a href="#" style="display: block; margin-bottom: 3px;">▶ Itens</a>
+                        <a href="#" style="display: block; margin-bottom: 3px;">▶ Alguma coisa</a>
+                        <a href="#" style="display: block; margin-bottom: 3px;">▶ Cássio</a>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <img src="https://cyber.dabamos.de/gifs/eyes/010.gif" alt="Olho mexendo" style="margin-top: 5px;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="xp-window">
+                <div class="xp-titlebar">
+                    <div class="xp-title">💬 MSN Messenger</div>
+                    <div class="xp-controls"><div class="xp-btn btn-close">X</div></div>
+                </div>
+                <div class="xp-content" style="background-color: #f3f4f5;">
+                    <div class="shoutbox-area">
+                        <div class="shout-msg"><span class="shout-time">[10:42]</span> <span class="shout-name">Fulano:</span> Eu vi algo estranho ontem</div>
+                        <div class="shout-msg"><span class="shout-time">[11:05]</span> <span class="shout-name">Beltrano:</span> onde vcs viram isso?</div>
+                        <div class="shout-msg"><span class="shout-time">[11:47]</span> <span class="shout-name">Cássio:</span> o poço não é saída</div>
+                        <div class="shout-msg"><span class="shout-time" style="color:#cc0000;">[03:33]</span> <span class="shout-name" style="color:#cc0000;">GUEST:</span> a agua ta fria aqui embaixo</div>
+                    </div>
+                    <input type="text" class="xp-input" placeholder="Seu comentário...">
+                    <div style="text-align: right;"><button class="xp-button">Enviar</button></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="xp-window" style="margin-top: 5px;">
+        <div class="xp-content" style="padding: 5px; text-align: center; font-weight: bold; color: #cc0000; border: none; border-top: 1px solid #7f9db9; background-color: #ece9d8;">
+            <marquee scrollamount="5">⚠ AVISO: NÃO DESÇA ATÉ O LABORATÓRIO DOS FUNDOS. A ÁGUA CONTINUA SUBINDO. O GUEST_004 AINDA ESTÁ LÁ. ⚠</marquee>
+        </div>
+    </div>
+
+</div>
+
+<div id="taskbar">
+    <div class="start-btn">
+        <span style="font-size: 20px; font-style: normal; margin-right: 5px; color: #fff;">⊞</span> start
+    </div>
+    
+    <div class="open-apps">
+        <div class="app-tab active">📝 Diário_Lab05.txt - Notepad</div>
+        <div class="app-tab">🎵 Windows Media Player</div>
+        <div class="app-tab">💬 MSN Messenger</div>
+    </div>
+
+    <div class="system-tray">
+        <span style="color: #00ff00;">🛡</span>
+        <span id="clock">17:21 PM</span>
+    </div>
+</div>
+
+<script>
+    function showError() {
+        document.getElementById('error-dialog').style.display = 'flex';
+        document.getElementById('overlay').style.display = 'block';
+    }
+    
+    function closeError() {
+        document.getElementById('error-dialog').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+    }
+
+    setInterval(() => {
+        let date = new Date();
+        let hours = date.getHours().toString().padStart(2, '0');
+        let mins = date.getMinutes().toString().padStart(2, '0');
+        document.getElementById('clock').innerText = hours + ":" + mins + (hours >= 12 ? ' PM' : ' AM');
+    }, 1000);
+</script>
+
+</body>
+</html>

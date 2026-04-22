@@ -3,311 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>meeeuuuuu (((( ;°Д°)))) //_* • 2005</title>
-    <style>
-        /* ESTILO 2005 - Atmosfera da floresta escura */
-        * { box-sizing: border-box; } /* Garante que bordas não quebrem a responsividade */
+    <title>Os mistérios de Tainã</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 
-        body {
-            background-image: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80');
-            background-color: #0f1a0f;
-            background-blend-mode: multiply;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: #8fa88f;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 13px;
-            margin: 0;
-            padding: 15px;
-            line-height: 1.5;
-        }
-
-        a { color: #a3c2a3; text-decoration: underline; }
-        a:hover { background-color: #2a3b2a; color: #c4d4c4; }
-
-        /* MÓDULOS CENTRAIS RESPONSIVOS */
-        .header-box, .nav-bar, .container, .footer-marquee {
-            width: 100%;
-            max-width: 860px; /* Trava no tamanho original em telas grandes */
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* CABEÇALHO */
-        .header-box {
-            border: 2px solid #4a6b4a;
-            background-color: rgba(10, 15, 10, 0.95);
-            text-align: center;
-            margin-bottom: 10px;
-            padding: 10px;
-        }
-
-        .header-box h1 {
-            margin: 0;
-            font-size: 24px;
-            color: #a3c2a3;
-            letter-spacing: 2px;
-        }
-
-        /* NAVEGAÇÃO */
-        .nav-bar {
-            border: 2px solid #4a6b4a;
-            background-color: rgba(10, 15, 10, 0.95);
-            padding: 8px;
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 14px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px; /* Substitui o margin antigo para ser responsivo */
-        }
-
-        /* LAYOUT PRINCIPAL (FLEXBOX no lugar da Tabela) */
-        .container {
-            border: 3px solid #2a3b2a;
-            background-color: rgba(10, 15, 10, 0.92);
-            display: flex;
-            flex-wrap: wrap; /* Permite que a coluna da direita desça no celular */
-            filter: contrast(1.05);
-        }
-
-        .left-col {
-            flex: 1 1 500px; /* Cresce e encolhe, base de 500px */
-            padding: 20px;
-            border-right: 2px dotted #4a6b4a;
-        }
-
-        .right-col {
-            flex: 1 1 300px; /* Cresce e encolhe, base de 300px */
-            padding: 20px;
-        }
-
-        /* CAIXAS */
-        .box {
-            border: 2px solid #4a6b4a;
-            background-color: rgba(17, 26, 17, 0.9);
-            padding: 15px;
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .box-title {
-            background-color: #4a6b4a;
-            color: #0f1a0f;
-            display: inline-block;
-            padding: 2px 8px;
-            font-weight: bold;
-            margin-top: -25px; 
-            margin-bottom: 15px;
-        }
-
-        /* ELEMENTOS VISUAIS DO ESBOÇO */
-        .placeholder-img-grande {
-            width: 100%;
-            height: 150px;
-            border: 1px dashed #8fa88f;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-            background: #2a3b2a;
-            text-align: center;
-        }
-
-        .placeholder-img-pequena {
-            width: 150px;
-            height: 120px;
-            border: 1px dashed #8fa88f;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #2a3b2a;
-            float: left;
-            margin-right: 15px;
-            margin-bottom: 10px;
-        }
-
-        .texto-decorado {
-            border-left: 3px double #4a6b4a; 
-            padding-left: 12px;
-            text-align: justify;
-        }
-
-        /* WIDGETS */
-        .audio-player {
-            border: 2px solid #4a6b4a;
-            background: rgba(17, 26, 17, 0.9);
-            padding: 10px;
-            margin: 15px 0;
-            font-size: 12px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .chatbox {
-            border: 2px inset #4a6b4a;
-            height: 140px;
-            overflow-y: auto;
-            padding: 10px;
-            background: rgba(26, 36, 26, 0.9);
-            margin-bottom: 15px;
-            font-size: 12px;
-        }
-
-        .chat-msg { border-bottom: 1px dotted #2a3b2a; padding-bottom: 6px; margin-bottom: 6px; }
-        .chat-date { float: right; font-size: 10px; color: #5a7b5a; }
-
-        .poll {
-            font-size: 12px;
-            background: rgba(26, 36, 26, 0.9);
-            padding: 12px;
-            border: 2px solid #4a6b4a;
-            margin-bottom: 15px;
-        }
-
-        /* RODAPÉ E MARQUEE */
-        .footer-marquee {
-            border: 2px solid #4a6b4a;
-            background-color: rgba(10, 15, 10, 0.95);
-            padding: 5px;
-            color: #5a7b5a;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-
-        .footer { text-align: center; font-size: 11px; color: #5a7b5a; margin-top: 10px; }
-
-        /* =========================================================
-           MEDIA QUERIES (A Mágica Responsiva)
-           ========================================================= */
-        @media screen and (max-width: 768px) {
-            body { padding: 10px; }
-            
-            /* Remove a borda da esquerda e empilha as colunas */
-            .left-col { border-right: none; border-bottom: 2px dotted #4a6b4a; padding: 15px; }
-            .right-col { padding: 15px; }
-            
-            /* Ajusta a imagem pequena para não quebrar texto no celular */
-            .placeholder-img-pequena { float: none; width: 100%; margin-right: 0; }
-            
-            .nav-bar { gap: 10px; }
-        }
-    </style>
 </head>
 <body>
+    <div id="main-container">
 
-    <div class="header-box">
-        <h1>TITULO DO BLOG</h1>
-    </div>
-    <div class="nav-bar">
-        <a href="#">home</a>
-        <a href="#">vídeos</a>
-        <a href="#">sobre_nós</a>
-        <a href="#">fórum</a>
-        <a href="#">contato</a>
-    </div>
+        <div class="panel" style="padding-bottom: 5px;">
+            <h1 style="text-align: center; color: #fffdfe; font-size: 45px; letter-spacing: 4px; margin-bottom: 5px;">Os mistérios de Tainã</h1>
+        </div>
 
-    <div class="container">
-        
-        <div class="left-col">
-            
-            <div class="box">
-                <span class="box-title">O que é isso?</span>
-                <div class="placeholder-img-grande">
-                    [ Gif ou imagem da Paula ]
+        <div id="content-wrapper">
+            <div class="col-main">
+                <div class="panel">
+                    <div class="panel-header" style="text-align: left; background: transparent; border: none; box-shadow: none; color: #00ff66; font-size: 20px; padding: 0 0 10px 0; margin: 0;">O que é isso?</div>
+
+                    <div class="image-box" style="background: #fff; height: 250px;">
+                        <img src="https://i.pinimg.com/originals/ba/a6/2a/baa62a9b25eb2d404865ff9f5d6fca10.gif" alt="Gif Principal" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+
+                    <div class="text-body" style="font-size: 22px;">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla pretium leo in porta luctus. Donec pellentesque scelerisque lorem, non placerat arcu varius quis. Cras ut molestie ante. Vestibulum et erat efficitur, maximus nunc id, pellentesque purus. Nullam molestie consequat quam, ac fringilla elit sagittis quis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Pellentesque at molestie sapien. Integer molestie quis urna et semper. Duis ultrices ullamcorper elit, et euismod orci ultrices sit amet. Nulla facilisi. Nunc iaculis tempor quam, egestas rutrum mi facilisis sed. Quisque sagittis nisi sit amet mollis porttitor. Nunc aliquam viverra dui. <br><br>
+
+                        Donec ac tortor mauris. Vivamus in placerat dui. Vestibulum sagittis dapibus sapien id semper. Aliquam pulvinar neque nibh, facilisis condimentum ipsum posuere ac. Proin luctus eget sem in iaculis. Morbi arcu elit, pharetra non dolor vel, vulputate efficitur elit. Fusce a eros eu tortor bibendum accumsan congue sed diam. Nullam ante odio, accumsan eget bibendum a, finibus nec ex. In at orci mattis, posuere magna ut, lacinia leo.<br><br>
+
+                        Nam elementum consequat elit nec aliquam. Phasellus vehicula ipsum a lacus hendrerit tempus. Ut quis enim enim. Mauris dapibus, quam vitae porta convallis, lorem ipsum tincidunt tellus, a pellentesque mauris ex a tortor. Vestibulum sed ornare lectus. Integer felis sem, rhoncus quis blandit vel, consequat nec magna. Etiam eu ipsum faucibus, varius sapien a, iaculis dolor. Praesent est velit, hendrerit quis ipsum vitae, blandit aliquam dolor.
+
+
+                    </div>
                 </div>
-                <div class="texto-decorado">
-                    <p><b>oi, meu nome é paula.</b> sou a nova câmera da turma! criei esse site pra servir como diário e arquivo pro nosso projeto de documentário.</p>
-                    <p>fique à vontade pra explorar ou olhar o mapa do site. Aos poucos tudo será revelado.</p>
+
+                <div class="panel">
+                    <div style="display: flex; gap: 15px; align-items: flex-start;">
+                        <div class="image-box" style="flex-shrink: 0; width: 220px; height: 160px;">
+                            <video src="relato1.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
+                        </div>
+                        <div class="text-body" style="font-size: 20px;">
+                            <div style="color: #00ff66; font-size: 26px; margin-bottom: 5px;">TEM ALGO NA MATA - 04/10/2007</div>
+                            somos 4 em casa, eu, minha irmã mais nova, minha mãe e minha avó. moramos na mesma casa desde que minha mãe nasceu, e desde a infância da minha vó, uma casa simples bem perto da floresta de Tainã, cercada de uma mata alta e ainda por cima a maioria das estradas são... <a href="relato1.html">ver mais</a><br><br>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="date-banner">
+                    <marquee scrollamount="5">~*~ MISTÉRIOS NA CIDADE DE TAINÁ - A VERDADE SERÁ REVELADA - NÃO DESÇA NO POÇO ~*~</marquee>
+                </div>
+
             </div>
 
-            <div class="box">
-                <span class="box-title">12/05/2005 - O Laboratório</span>
-                <div style="overflow: auto;">
-                    <div class="placeholder-img-pequena">[ Gif do poço ]</div>
-                    <p>Primeiro dia oficial de gravação! Roberto me apresentou pro Ícaro. A gente estava arrumando as coisas pra introdução quando encontramos aquela janela nos fundos… dava pra um laboratório antigo. Tinha um cara dormindo lá. Gravamos um pouco, mas a câmera deu defeito do nada. Amanhã tem mais.</p>
-                </div>
-            </div>
 
-            <div class="box">
-                <span class="box-title">14/05/2005 - Atualizações</span>
-                <p>O nome do cara é Cássio. Ele acabou ficando com a gente no escritório. Ícaro achou uma boa ideia. Amanhã vamos na casa de uma usuária do fórum que diz que tem visões. Ela mora aqui perto. Espero que renda material bom pro documentário.</p>
+            <div class="col-sidebar">
+
+                <div class="panel">
+                    <div class="panel-header" style="border: none;">Navegação</div>
+                    
+                    <div class="nav-btn">
+                        <img src="https://i.pinimg.com/originals/22/f8/82/22f8829905251c8d1e88d81aed03c292.gif" alt="gif olho" width="30" height="30">
+                        <span class="nav-icon"></span>Relatos
+                    </div>
+                    <div class="nav-btn">
+                        <img src="https://i.pinimg.com/originals/11/73/11/1173111f04ec6e8afb8a4126294b1207.gif" alt="gif caveira" width="30" height="30">
+                        <span class="nav-icon"></span> Vídeos
+                    </div>
+                    <div class="nav-btn">
+                        <img src="https://i.pinimg.com/originals/7a/d4/f3/7ad4f38f0f6fa256a54ff9a92f28f63b.gif" alt="gif camera" width="30" height="30">
+                        <span class="nav-icon"></span> Fotos
+                    </div>
+                    <div class="nav-btn">
+                        <img src="https://i.pinimg.com/originals/be/c3/34/bec33481c435256921f05b78c19158f3.gif" alt="gif fórum" width="30" height="30">
+                        <span class="nav-icon"></span> Fórum
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">VLOG NÚMERO 1</div>
+                    <div style="text-align: center; color: #ff0055; margin-bottom: 10px;" class="blink">● REC - CLIQUE PARA ABRIR</div>
+
+                    <div class="retro-player-box">
+                        <div class="retro-player-header">
+                            <span>MEDIA_PLAYER.EXE</span>
+                            <span style="color: #ff0055;">[X]</span>
+                        </div>
+                        <div class="retro-video-wrapper">
+                            <video id="sidebar-video" src="relato1.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
+                        </div>
+                        <div class="retro-player-controls" style="flex-wrap: nowrap; gap: 4px;">
+                            <button class="player-btn" style="font-size: 15px; padding: 1px 4px;" onclick="document.getElementById('sidebar-video').play()">▶ PLAY</button>
+                            <button class="player-btn" style="font-size: 15px; padding: 1px 4px;" onclick="document.getElementById('sidebar-video').pause()">❚❚ PAUSE</button>
+                            <button class="player-btn" style="font-size: 15px; padding: 1px 4px;" onclick="(function(v){v.pause();v.currentTime=0;})(document.getElementById('sidebar-video'))">◼ STOP</button>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+                        <div style="line-height: 1.4; font-size: 22px;">
+                            <span style="color: #00ff66;">#Arquivo_04</span><br>
+                            <span style="color: #00ffff;">#Anomalia</span><br>
+                            <span style="color: #00ff66;">#Cássio_Loc</span>
+                        </div>
+                        <div>
+                            <img src="https://i.pinimg.com/originals/6a/00/12/6a0012cf3176065878e63bbacf036c12.gif" alt="olho" style="width: 50px;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header" style="border: none;">SHOUTBOX</div>
+                    <div class="shoutbox" id="shoutbox-container" style="overflow-y: auto; max-height: 200px;">
+                        <div class="shout-msg"><span class="shout-time">[10:42]</span> <span class="shout-name" style="color:#ffffff;">Roberto:</span> nao posta as fotos</div>
+                        <div class="shout-msg"><span class="shout-time">[11:05]</span> <span class="shout-name" style="color:#ffffff;">Ícaro:</span> layout foda</div>
+                        <div class="shout-msg"><span class="shout-time">[11:47]</span> <span class="shout-name" style="color:#ffffff;">valeria:</span> o poco nao e saida</div>
+                        <div class="shout-msg"><span class="shout-time">[23:51]</span> <span class="shout-name" style="color:#ffffff;">Roberto:</span> cassio sumiu msm?</div>
+                        <div class="shout-msg"><span class="shout-time" style="color:#ffffff;">[03:33]</span> <span class="shout-name" style="color:#ffffff;">GUEST:</span> a agua ta fria aqui embaixo</div>
+                    </div>
+                    <input type="text" id="shout-input" class="input-pixel" placeholder="Mandar mensagem...">
+                </div>
+
+                <div class="panel">
+                    <div style="text-align: center; display: flex; flex-wrap: wrap; justify-content: center; gap: 5px;">
+                        <img src="https://cyber.dabamos.de/88x31/imaginaryland.gif" alt="I Love MCR">
+                        <img src="https://cyber.dabamos.de/88x31/ie_exploder.gif" alt="Hellsing">
+                        <img src="https://cyber.dabamos.de/88x31/geocities.gif" alt="Hellsing">
+                        <img src="ratazana.png" alt="Dark Site" width="88" height="31">
+                        <img src="https://cyber.dabamos.de/88x31/bloodmoon-knight.gif" alt="IE 6" style="filter: hue-rotate(240deg);">
+                        <img src="https://cyber.dabamos.de/88x31/notepad.gif" alt="Feito no Bloco de Notas">
+                    </div>
+                </div>
+
             </div>
 
         </div>
 
-        <div class="right-col">
+    </div>
 
-            <div class="box">
-                <span class="box-title">Vlog numero 1º</span>
+    <script>
+        // Seleciona o input e a caixa de mensagens
+        const shoutInput = document.getElementById('shout-input');
+        const shoutboxContainer = document.getElementById('shoutbox-container');
+
+        // Escuta quando o usuário aperta uma tecla no input
+        shoutInput.addEventListener('keypress', function(event) {
+            // Verifica se a tecla apertada foi o 'Enter' e se o campo não está vazio
+            if (event.key === 'Enter' && shoutInput.value.trim() !== '') {
                 
-                <a href="#" onclick="window.open('https://www.youtube.com', 'newwindow', 'width=600,height=400'); return false;">
-                    <div class="placeholder-img-grande" style="height: 100px; cursor: pointer; border-color: #a3c2a3;">
-                        [ ▶ Abrir Vídeo na Pop-up ]
-                    </div>
-                </a>
+                // Pega a hora atual do sistema
+                const agora = new Date();
+                const horas = String(agora.getHours()).padStart(2, '0');
+                const minutos = String(agora.getMinutes()).padStart(2, '0');
+                const tempoFormatado = `[${horas}:${minutos}]`;
 
-                <div class="audio-player">
-                    ▶ 0:00 / 2:15 
-                    <span style="margin-left:auto; font-size:11px;">[intro_programa.wav]</span>
-                </div>
-
-                <div class="poll">
-                    <p style="margin-top:0;"><b>enquete: o que dá mais medo?</b></p>
-                    <input type="radio" name="medo" checked> escuro<br>
-                    <input type="radio" name="medo"> lugares abandonados<br>
-                    <input type="radio" name="medo"> perder a memória<br>
-                    <br>
-                    <center><button style="background:#111; color:#8fa88f; border:1px solid #8fa88f; padding:2px 8px; cursor:pointer;">Votar</button></center>
-                </div>
-            </div>
-
-            <div class="box">
-                <span class="box-title">Fórum / Chatbox</span>
+                // Cria o HTML da nova mensagem
+                const novaMensagem = document.createElement('div');
+                novaMensagem.classList.add('shout-msg');
                 
-                <div class="chatbox">
-                    <div class="chat-msg">
-                        <span class="chat-date">10:42 am</span>
-                        <b>Roberto:</b> Paula, já configurou o site?
-                    </div>
-                    <div class="chat-msg">
-                        <span class="chat-date">11:05 am</span>
-                        <b>Ícaro:</b> Ficou muito daora a página verde hahaha
-                    </div>
-                    <div class="chat-msg">
-                        <span class="chat-date">14:20 pm</span>
-                        <b>paula_online:</b> testando 1 2 3... chat funcionando!
-                    </div>
-                </div>
+                // Define o conteúdo (Coloquei o nome como "Você" e uma cor verde para destacar)
+                novaMensagem.innerHTML = `<span class="shout-time">${tempoFormatado}</span> <span class="shout-name" style="color:#00ff00;">Você:</span> ${shoutInput.value}`;
 
-                <p style="font-size: 11px;"><b>→ [Ep1] O laboratório nos fundos</b></p>
-                <p style="font-size: 11px;"><b>→ [Ep2] A vidente do fórum morreu?</b></p>
-                <p style="font-size: 11px;"><b>→ Quem é o Pária mesmo?</b></p>
-            </div>
+                // Adiciona a nova mensagem no final da shoutbox
+                shoutboxContainer.appendChild(novaMensagem);
 
-            <center style="font-size:11px; color:#5a7b5a; margin-top:10px;">
-                visitantes hoje: <b>184</b><br>
-                total desde 05/05/2005: <b>3.872</b>
-            </center>
+                // Limpa o campo de texto depois de enviar
+                shoutInput.value = '';
 
-        </div>
-    </div>
-
-    <div class="footer-marquee">
-        <marquee behavior="scroll" direction="left" scrollamount="4">
-            • último update: 18/05/2005 • nova entrada no diário • algo estranho tá acontecendo no escritório... NÃO OLHE PARA O POÇO •
-        </marquee>
-    </div>
-
-    <div class="footer">
-        feito em 2005 com FrontPage • melhor visualizado em 1024x768 • 
-        <span style="color:#4a6b4a;">© oreo • não copie o layout plz</span>
-    </div>
+                // Rola a shoutbox automaticamente para a última mensagem (opcional, mas recomendado)
+                shoutboxContainer.scrollTop = shoutboxContainer.scrollHeight;
+            }
+        });
+    </script>
 
 </body>
 </html>
