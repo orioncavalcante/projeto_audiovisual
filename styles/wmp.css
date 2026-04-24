@@ -1,0 +1,101 @@
+/* --- ESTILOS DO WINDOWS MEDIA PLAYER 9 (WINDOWS XP LUNA) --- */
+#wmp-modal {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.75); z-index: 9999; align-items: center; justify-content: center;
+    font-family: Tahoma, 'Segoe UI', Arial, sans-serif;
+}
+#wmp-modal.active { display: flex; }
+
+/* Moldura XP */
+.wmp-window {
+    width: 720px; max-width: 95vw; height: 500px;
+    background: #ece9d8; 
+    border: 3px solid #0053e5;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.5);
+    display: flex; flex-direction: column; overflow: hidden;
+}
+
+/* --- BARRA DE TÍTULO LUNA XP --- */
+.wmp-titlebar {
+    background: linear-gradient(to bottom, #0058e6 0%, #3a93ff 8%, #288eff 40%, #127dff 88%, #036bfe 100%);
+    color: white; height: 30px;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 4px;
+}
+.wmp-title-left { display: flex; align-items: center; font-weight: bold; font-size: 13px; text-shadow: 1px 1px 2px #000; }
+.wmp-icon {
+    width: 14px; height: 14px; border-radius: 50%; margin-right: 6px;
+    background: radial-gradient(circle at 30% 30%, #fff, #00ccff 40%, #0000ff);
+    box-shadow: inset 0 0 2px #fff; display: flex; align-items: center; justify-content: center;
+}
+.wmp-icon::after { content: '▶'; font-size: 7px; color: white; margin-left: 1px; text-shadow: none; }
+
+/* Botões da Janela XP */
+.title-buttons { display: flex; gap: 2px; align-items: center; }
+.xp-btn {
+    width: 21px; height: 21px; border: 1px solid #fff; border-radius: 3px;
+    color: white; font-weight: bold; font-family: Tahoma; font-size: 10px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.4); text-shadow: 1px 1px 1px #000;
+}
+.xp-min, .xp-max { background: linear-gradient(to bottom, #3f8cf3 0%, #1a66e6 100%); border-color: #fff #003399 #003399 #fff; }
+.xp-min:active, .xp-max:active { background: #1a66e6; border-color: #003399 #fff #fff #003399; }
+.xp-close { background: linear-gradient(to bottom, #ea7b70 0%, #e2493a 100%); border-color: #fff #8a1c13 #8a1c13 #fff; font-size: 12px; }
+.xp-close:hover { background: linear-gradient(to bottom, #f2978e 0%, #e85a4b 100%); }
+.xp-close:active { background: #d03527; border-color: #8a1c13 #fff #fff #8a1c13; }
+
+/* --- MENUS --- */
+.wmp-menubar { 
+    display: flex; gap: 15px; padding: 4px 10px; font-size: 11px; 
+    background-color: #ece9d8; border-bottom: 1px solid #c9c7ba; color: #000;
+}
+.wmp-menubar span { cursor: pointer; padding: 2px 5px; }
+.wmp-menubar span:hover { background-color: #316ac5; color: white; border-radius: 2px; }
+
+/* --- ÁREA DE VÍDEO --- */
+.wmp-content { flex-grow: 1; background: #000; position: relative; border-bottom: 2px solid #fff; }
+#wmp-iframe { width: 100%; height: 100%; }
+
+/* --- CONTROLES INFERIORES WMP 9 (Prata e Azul) --- */
+.wmp-bottom-bar {
+    background: linear-gradient(to bottom, #f3f2eb 0%, #dcd7c4 100%);
+    height: 65px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 20px; border-top: 1px solid #fff; position: relative;
+}
+
+.wmp-center-controls { display: flex; align-items: center; position: absolute; left: 50%; transform: translateX(-50%); }
+
+.wmp-stop-btn {
+    width: 22px; height: 22px; margin-right: 15px;
+    background: linear-gradient(to bottom, #fefefe 0%, #cccccc 100%);
+    border: 1px solid #888; border-radius: 3px; color: #333; 
+    display: flex; align-items: center; justify-content: center; font-size: 10px; cursor: pointer;
+    box-shadow: inset 0 1px 1px #fff;
+}
+.wmp-stop-btn:active { background: #ccc; box-shadow: inset 0 1px 3px rgba(0,0,0,0.3); }
+
+.wmp-prev-btn, .wmp-next-btn {
+    background: linear-gradient(to bottom, #fefefe 0%, #cccccc 100%);
+    border: 1px solid #888; color: #333; height: 28px; width: 65px; cursor: pointer;
+    box-shadow: inset 0 1px 1px #fff; font-size: 10px; z-index: 1;
+    display: flex; align-items: center; letter-spacing: 1px;
+}
+.wmp-prev-btn { border-radius: 15px 0 0 15px; justify-content: flex-start; padding-left: 15px; margin-right: -10px; }
+.wmp-next-btn { border-radius: 0 15px 15px 0; justify-content: flex-end; padding-right: 15px; margin-left: -10px; }
+.wmp-prev-btn:active, .wmp-next-btn:active { background: #ccc; box-shadow: inset 0 1px 3px rgba(0,0,0,0.3); }
+
+/* Botão Play Azul com borda Prata */
+.wmp-play-btn {
+    width: 48px; height: 48px; border-radius: 50%; z-index: 2;
+    background: radial-gradient(circle at 30% 30%, #5ce1e6, #0078d7 60%, #003b80);
+    border: 2px solid #ccc; color: #fff; font-size: 20px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.8);
+}
+.wmp-play-btn:active { background: #0078d7; box-shadow: inset 0 2px 5px rgba(0,0,0,0.6); }
+.wmp-play-btn::before { content: '▶'; margin-left: 4px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+
+.wmp-bottom-right { display: flex; gap: 15px; color: #333; font-size: 14px; align-items: center; margin-left: auto; }
+.wmp-vol { display: flex; align-items: center; gap: 5px; cursor: pointer; }
+.wmp-vol-arrow { font-size: 10px; margin-top: 2px; }

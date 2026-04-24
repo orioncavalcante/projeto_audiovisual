@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>OBSERVAÇÃO</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000;
+            color: #888;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        .glitch {
+            color: #fff;
+            font-size: 24px;
+            text-transform: uppercase;
+            text-shadow: 2px 0 red, -2px 0 blue;
+            animation: glitch-anim 1s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-anim {
+            0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 2px); }
+            20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -2px); }
+            40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 2px); }
+            60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -2px); }
+            80% { clip-path: inset(10% 0 70% 0); transform: translate(-2px, 2px); }
+            100% { clip-path: inset(30% 0 20% 0); transform: translate(2px, -2px); }
+        }
+        .text-body { font-size: 18px; line-height: 1.6; letter-spacing: 1px; }
+        .red-pulse { color: #ff0000; font-weight: bold; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        .video-box { border: 2px dashed #444; padding: 5px; text-align: center; background: #111; margin: 30px 0; }
+
+        /* --- BARRA DE ROLAGEM WINDOWS XP FIXA --- */
+        ::-webkit-scrollbar { 
+            width: 17px !important; 
+            height: 17px !important; 
+            background: #f0f0ea !important; 
+            border-left: 1px solid #e1e0db !important; 
+        }
+        ::-webkit-scrollbar-track { 
+            background: #f0f0ea !important; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to right, #c0d7f2 0%, #9cbef0 50%, #87aef0 51%, #a7cbf2 100%) !important;
+            border: 1px solid #6385d0 !important; 
+            border-radius: 4px !important; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to right, #d4e6f9 0%, #b5cff4 50%, #a4c4f4 51%, #c0daf9 100%) !important;
+        }
+        /* Oculta os botões com as setas para focar na barra principal arredondada */
+        ::-webkit-scrollbar-button { 
+            display: none !important; 
+        }
+        ::-webkit-scrollbar-corner { 
+            background: #f0f0ea !important; 
+        }
+    </style>
+</head>
+<body>
+
+    <div style="text-align: center;">
+        <img src="https://cyber.dabamos.de/88x31/eye.gif" alt="olho" width="60">
+        <h1 class="glitch">ELE NÃO VAI EMBORA</h1>
+    </div>
+
+    <div class="text-body">
+        <p>Eu não sei exatamente quando começou. No início pensei que fosse coisa da minha cabeça, mas não era. Todas as noites ele aparece.</p>
+        
+        <p>A primeira vez que consegui ver com clareza foi no fim do corredor da minha casa. Foi aí que eu percebi a silhueta. Parada e imóvel, como se estivesse me esperando.</p>
+        
+        <p>Depois de um tempo, ele sumiu. Achei que tinha acabado, que tinha ido embora. <span style="color: white; background: #330000;">Mas não foi.</span></p>
+
+        <p>Agora ele aparece todas as noites. Nunca fala. Nunca se aproxima demais. Só observa.</p>
+
+        <p>Consigo sentir quando ele está por perto. No canto das paredes, do outro lado do box durante meu banho, atrás de mim enquanto escovo meus dentes, no banco de trás do meu carro.</p>
+    </div>
+
+    <div class="video-box">
+        <p style="color: red; font-family: 'VT323'; font-size: 22px;">[ ARQUIVO DE VÍDEO .AVI RECUPERADO ]</p>
+        <video width="100%" controls style="filter: contrast(150%) grayscale(80%); border: 1px solid red;">
+            <source src="SEU_VIDEO_AQUI.mp4" type="video/mp4">
+            Seu navegador não suporta vídeos.
+        </video>
+    </div>
+
+    <div class="text-body red-pulse" style="font-size: 26px; text-align: center; margin-top: 40px; border-top: 1px solid #333; padding-top: 20px;">
+        <p>Eu não sei o que ele quer.</p>
+        <p>Eu não sei o que ele é.</p>
+    </div>
+
+</body>
+</html>
