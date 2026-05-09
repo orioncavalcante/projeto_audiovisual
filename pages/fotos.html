@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICATU PROJECT - Arquivo Fotográfico</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        /* --- ESTILOS ESPECÍFICOS DA GALERIA --- */
+
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            background-color: #000;
+            border: 2px solid #231635;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-shadow: inset 1px 1px 0 #555, inset -1px -1px 0 #111;
+            flex-wrap: wrap;
+        }
+
+        .top-nav .nav-btn {
+            margin: 0;
+            padding: 5px 15px;
+            font-size: 22px;
+        }
+
+        .gallery-wrapper {
+            background-color: #0b0616;
+            border: 4px solid #000;
+            box-shadow: inset 1px 1px 0 #a18ab6, inset 2px 2px 0 #4a3a70, inset -2px -2px 0 #231635;
+            padding: 20px;
+        }
+
+        .gallery-header {
+            text-align: center;
+            border-bottom: 2px dashed #4a3a70;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .gallery-header h2 {
+            color: #ff0055;
+            font-size: 32px;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 0px #000;
+        }
+
+        .gallery-desc {
+            color: #d1c8e3;
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.3;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 10px;
+        }
+
+        .photo-card {
+            background: #05020a;
+            border: 2px solid #231635;
+            padding: 8px;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.8);
+            transition: border-color 0.2s ease; 
+        }
+
+        .photo-card:hover {
+            border-color: #00ff66; 
+        }
+
+        .photo-frame {
+            width: 100%;
+            height: 200px;
+            background: #000;
+            border: 1px solid #111;
+            overflow: hidden;
+            margin-bottom: 10px;
+            cursor: pointer; 
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: contrast(1.1) brightness(0.9);
+            transition: filter 0.2s ease;
+        }
+
+        .photo-frame:hover img {
+            filter: contrast(1) brightness(1); 
+        }
+
+        .photo-caption {
+            font-size: 18px;
+            color: #00ff66;
+            line-height: 1.2;
+            border-top: 1px dashed #231635;
+            padding-top: 5px;
+        }
+
+        .photo-meta {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 3px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* --- LIGHTBOX (TELA CHEIA E INVESTIGAÇÃO) --- */
+        #lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            overflow: hidden; 
+        }
+
+        #lightbox.active {
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-content {
+            background: #000;
+            padding: 5px;
+            border: 2px solid #333;
+            box-shadow: 0px 0px 40px rgba(0,0,0,1);
+            display: inline-block;
+            position: relative;
+        }
+
+        #lightbox-img {
+            /* Tamanho grande, mas abraçando os limites da foto */
+            max-width: 80vw;
+            max-height: 80vh;
+            display: block;
+            cursor: zoom-in; 
+            image-rendering: pixelated; 
+            transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1); 
+            transform-origin: center center; 
+        }
+
+        /* O zoom altera apenas a escala visual (aumento de 2.2x) */
+        #lightbox-img.zoomed {
+            transform: scale(2.2);
+            cursor: zoom-out;
+        }
+
+        /* --- EFEITO DE CARREGAMENTO LENTO (DIAL-UP) --- */
+        .dial-up-effect {
+            /* 2.8 segundos, dividido em 25 travamentos (linhas) */
+            animation: dialUpLoad 2.8s steps(25) forwards;
+        }
+
+        @keyframes dialUpLoad {
+            0% { 
+                clip-path: inset(0 0 100% 0); 
+                filter: grayscale(100%) brightness(1.5) contrast(1.5); 
+            }
+            100% { 
+                clip-path: inset(0 0 0 0); 
+                filter: grayscale(0%) brightness(1) contrast(1); 
+            }
+        }
+
+        /* Botão Fechar */
+        .lightbox-close {
+            position: fixed;
+            top: 25px;
+            right: 35px;
+            background: #000;
+            color: #fff;
+            border: 2px solid #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0px 0px 15px #000;
+            z-index: 10001; 
+            transition: 0.2s;
+        }
+
+        .lightbox-close:hover {
+            background: #ff0055;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="main-container">
+
+        <div class="panel" style="padding-bottom: 5px;">
+            <div style="text-align: center;">
+                <h1 style="color: #fffdfe; font-size: 50px; letter-spacing: 4px; margin: 0;">ICATU PROJECT BOARD</h1>
+                <div style="color: #00ffff; font-size: 22px;">:: EVIDÊNCIAS VISUAIS ::</div>
+            </div>
+        </div>
+
+        <div class="top-nav">
+            <a href="../index.html" style="text-decoration: none;">
+                <div class="nav-btn">
+                    <img src="https://i.pinimg.com/originals/1e/09/97/1e09974e521beef418e8ed3a0a6f8db7.gif" width="20" height="20" style="margin-right: 5px; vertical-align: middle;"> Home
+                </div>
+            </a>
+            <a href="relatos.html" style="text-decoration: none;">
+                <div class="nav-btn">
+                    <img src="https://i.pinimg.com/originals/22/f8/82/22f8829905251c8d1e88d81aed03c292.gif" width="20" height="20" style="margin-right: 5px; vertical-align: middle;"> Relatos
+                </div>
+            </a>
+            <a href="forum.html" style="text-decoration: none;">
+                <div class="nav-btn">
+                    <img src="https://i.pinimg.com/originals/be/c3/34/bec33481c435256921f05b78c19158f3.gif" width="20" height="20" style="margin-right: 5px; vertical-align: middle;"> Fórum
+                </div>
+            </a>
+            <div class="nav-btn" style="border-color: #00ff66; color: #00ff66; background: rgba(0, 255, 102, 0.1);">
+                <img src="https://i.pinimg.com/originals/7a/d4/f3/7ad4f38f0f6fa256a54ff9a92f28f63b.gif" width="20" height="20" style="margin-right: 5px; vertical-align: middle;"> Fotos (Atual)
+            </div>
+        </div>
+
+        <div class="gallery-wrapper">
+            
+            <div class="gallery-header">
+                <h2>&#9763; ARQUIVO FOTOGRÁFICO RESTRITO &#9763;</h2>
+                <div class="gallery-desc">
+                    Imagens recuperadas de câmeras digitais, celulares antigos e rolos de filme. A maioria dos arquivos apresentou lentidão severa no carregamento.<br>
+                    <b>Aponte e clique em áreas específicas da foto aberta para investigar com o zoom da lupa.</b>
+                </div>
+            </div>
+
+            <div class="photo-grid">
+
+                <div class="photo-card">
+                    <div class="photo-frame">
+                        <img src="https://i.pinimg.com/originals/c7/ee/b2/c7eeb2f38d3886f7b11d95cde882b545.jpg" alt="Poço">
+                    </div>
+                    <div class="photo-caption">
+                        <div class="photo-meta"><span>IMG_0042.JPG</span> <span>28/10/2007</span></div>
+                        Quintal da Valéria. A água não reflete o flash da câmera.
+                    </div>
+                </div>
+
+                <div class="photo-card">
+                    <div class="photo-frame">
+                        <img src="https://i.pinimg.com/originals/bd/ca/fa/bdcafa13d2af93427181c00a653c3e2f.gif" alt="Mata">
+                    </div>
+                    <div class="photo-caption">
+                        <div class="photo-meta"><span>ESTRADA_4.BMP</span> <span>15/09/2007</span></div>
+                        O bambuzal. Foto tirada pelo Ícaro antes do pneu furar.
+                    </div>
+                </div>
+
+                <div class="photo-card">
+                    <div class="photo-frame">
+                        <img src="https://cyber.dabamos.de/88x31/eye.gif" alt="Corredor" style="object-fit: none; padding: 20px;">
+                    </div>
+                    <div class="photo-caption">
+                        <div class="photo-meta"><span>REC_04.JPG</span> <span>02/10/2007</span></div>
+                        Silhueta no fim do corredor. Ele nunca se aproxima.
+                    </div>
+                </div>
+
+                <div class="photo-card">
+                    <div class="photo-frame">
+                        <img src="https://i.pinimg.com/originals/a1/b9/7a/a1b97a2e0a811c7fa159677b1029c1d2.gif" alt="Registros">
+                    </div>
+                    <div class="photo-caption">
+                        <div class="photo-meta"><span>ARQUIVO_REC.AVI</span> <span>20/10/2007</span></div>
+                        Câmera do Cássio encontrada perto da mata.
+                    </div>
+                </div>
+
+                <div class="photo-card">
+                    <div class="photo-frame">
+                        <img src="https://i.pinimg.com/originals/9f/b1/6a/9fb16a48c3797dad4eff71a5e8749dd8.gif" alt="Floresta Brilhante">
+                    </div>
+                    <div class="photo-caption">
+                        <div class="photo-meta"><span>SCAN_001.JPG</span> <span>12/08/1998</span></div>
+                        A Floresta Tainã. Arquivo escaneado do diário da avó da Paula.
+                    </div>
+                </div>
+
+                <div class="photo-card">
+                    <div class="photo-frame">
+                        <img src="https://i.pinimg.com/originals/6a/00/12/6a0012cf3176065878e63bbacf036c12.gif" alt="Olho Noturno">
+                    </div>
+                    <div class="photo-caption">
+                        <div class="photo-meta"><span>DSC_0999.JPG</span> <span>Ontem</span></div>
+                        Reflexo pálido encontrado nas imagens recuperadas.
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="date-banner" style="margin-top: 30px;">
+                <marquee scrollamount="6" style="color: #00ffff;">~*~ SE VOCÊ ENCONTRAR UMA CÂMERA DESCARTÁVEL NA MATA, NÃO REVELE O FILME ~*~</marquee>
+            </div>
+
+        </div> 
+    </div>
+
+    <!-- CONTAINER DO LIGHTBOX -->
+    <div id="lightbox">
+        <div class="lightbox-close" title="Fechar">X</div>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Imagem Ampliada">
+        </div>
+    </div>
+
+    <!-- SCRIPT DA GALERIA -->
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.querySelector('.lightbox-close');
+        
+        const galleryImages = document.querySelectorAll('.photo-frame img');
+        
+        // 1. Ao clicar numa miniatura da galeria
+        galleryImages.forEach(img => {
+            img.addEventListener('click', function() {
+                lightboxImg.src = this.src; 
+                
+                // Reinicia a animação de carregamento travado
+                lightboxImg.classList.remove('dial-up-effect');
+                void lightboxImg.offsetWidth; 
+                lightboxImg.classList.add('dial-up-effect');
+
+                lightbox.classList.add('active'); 
+                lightboxImg.classList.remove('zoomed'); 
+                lightboxImg.style.transformOrigin = 'center center'; 
+            });
+        });
+
+        // 2. Dar Zoom Exato onde o usuário clicar
+        lightboxImg.addEventListener('click', function(e) {
+            e.stopPropagation(); 
+            
+            if (!this.classList.contains('zoomed')) {
+                // Descobre a coordenada (X e Y) exata do clique dentro da imagem
+                const rect = this.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                
+                // Ancorar o zoom no clique
+                this.style.transformOrigin = `${x}% ${y}%`;
+                this.classList.add('zoomed');
+            } else {
+                // Tira o zoom
+                this.classList.remove('zoomed');
+            }
+        });
+
+        // 3. Fechar pelo botão X
+        closeBtn.addEventListener('click', function() {
+            lightbox.classList.remove('active');
+            lightboxImg.src = '';
+        });
+
+        // 4. Fechar clicando fora da foto
+        lightbox.addEventListener('click', function(e) {
+            if (e.target !== lightboxImg && e.target !== closeBtn) {
+                lightbox.classList.remove('active');
+                lightboxImg.src = '';
+                lightboxImg.classList.remove('zoomed');
+            }
+        });
+    </script>
+
+</body>
+</html>
