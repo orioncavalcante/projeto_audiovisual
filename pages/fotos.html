@@ -5,201 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ICATU PROJECT - Arquivo Fotográfico</title>
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/fotos.css">
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <style>
-        /* --- ESTILOS ESPECÍFICOS DA GALERIA --- */
 
-        .top-nav {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            background-color: #000;
-            border: 2px solid #231635;
-            padding: 10px;
-            margin-bottom: 20px;
-            box-shadow: inset 1px 1px 0 #555, inset -1px -1px 0 #111;
-            flex-wrap: wrap;
-        }
-
-        .top-nav .nav-btn {
-            margin: 0;
-            padding: 5px 15px;
-            font-size: 22px;
-        }
-
-        .gallery-wrapper {
-            background-color: #0b0616;
-            border: 4px solid #000;
-            box-shadow: inset 1px 1px 0 #a18ab6, inset 2px 2px 0 #4a3a70, inset -2px -2px 0 #231635;
-            padding: 20px;
-        }
-
-        .gallery-header {
-            text-align: center;
-            border-bottom: 2px dashed #4a3a70;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
-
-        .gallery-header h2 {
-            color: #ff0055;
-            font-size: 32px;
-            letter-spacing: 2px;
-            margin-bottom: 5px;
-            text-shadow: 2px 2px 0px #000;
-        }
-
-        .gallery-desc {
-            color: #d1c8e3;
-            font-size: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.3;
-        }
-
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            padding: 10px;
-        }
-
-        .photo-card {
-            background: #05020a;
-            border: 2px solid #231635;
-            padding: 8px;
-            box-shadow: 3px 3px 10px rgba(0,0,0,0.8);
-            transition: border-color 0.2s ease; 
-        }
-
-        .photo-card:hover {
-            border-color: #00ff66; 
-        }
-
-        .photo-frame {
-            width: 100%;
-            height: 200px;
-            background: #000;
-            border: 1px solid #111;
-            overflow: hidden;
-            margin-bottom: 10px;
-            cursor: pointer; 
-        }
-
-        .photo-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: contrast(1.1) brightness(0.9);
-            transition: filter 0.2s ease;
-        }
-
-        .photo-frame:hover img {
-            filter: contrast(1) brightness(1); 
-        }
-
-        .photo-caption {
-            font-size: 18px;
-            color: #00ff66;
-            line-height: 1.2;
-            border-top: 1px dashed #231635;
-            padding-top: 5px;
-        }
-
-        .photo-meta {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 3px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        /* --- LIGHTBOX (TELA CHEIA E INVESTIGAÇÃO) --- */
-        #lightbox {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 10000;
-            overflow: hidden; 
-        }
-
-        #lightbox.active {
-            display: flex; 
-            align-items: center;
-            justify-content: center;
-        }
-
-        .lightbox-content {
-            background: #000;
-            padding: 5px;
-            border: 2px solid #333;
-            box-shadow: 0px 0px 40px rgba(0,0,0,1);
-            display: inline-block;
-            position: relative;
-        }
-
-        #lightbox-img {
-            /* Tamanho grande, mas abraçando os limites da foto */
-            max-width: 80vw;
-            max-height: 80vh;
-            display: block;
-            cursor: zoom-in; 
-            image-rendering: pixelated; 
-            transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1); 
-            transform-origin: center center; 
-        }
-
-        /* O zoom altera apenas a escala visual (aumento de 2.2x) */
-        #lightbox-img.zoomed {
-            transform: scale(2.2);
-            cursor: zoom-out;
-        }
-
-        /* --- EFEITO DE CARREGAMENTO LENTO (DIAL-UP) --- */
-        .dial-up-effect {
-            /* 2.8 segundos, dividido em 25 travamentos (linhas) */
-            animation: dialUpLoad 2.8s steps(25) forwards;
-        }
-
-        @keyframes dialUpLoad {
-            0% { 
-                clip-path: inset(0 0 100% 0); 
-                filter: grayscale(100%) brightness(1.5) contrast(1.5); 
-            }
-            100% { 
-                clip-path: inset(0 0 0 0); 
-                filter: grayscale(0%) brightness(1) contrast(1); 
-            }
-        }
-
-        /* Botão Fechar */
-        .lightbox-close {
-            position: fixed;
-            top: 25px;
-            right: 35px;
-            background: #000;
-            color: #fff;
-            border: 2px solid #fff;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: Arial, sans-serif;
-            font-weight: bold;
-            font-size: 20px;
-            cursor: pointer;
-            box-shadow: 0px 0px 15px #000;
-            z-index: 10001; 
-            transition: 0.2s;
-        }
-
-        .lightbox-close:hover {
-            background: #ff0055;
-            transform: scale(1.1);
-        }
     </style>
 </head>
 <body>
@@ -214,24 +23,31 @@
         </div>
 
         <div class="top-nav">
-            <a href="../index.html" style="text-decoration: none;">
-                <div class="nav-btn">
-                    <img src="https://i.pinimg.com/originals/1e/09/97/1e09974e521beef418e8ed3a0a6f8db7.gif" width="20" height="20" style="margin-right: 5px; vertical-align: middle;"> Home
-                </div>
-            </a>
             <a href="relatos.html" style="text-decoration: none;">
                 <div class="nav-btn">
                     <img src="https://i.pinimg.com/originals/22/f8/82/22f8829905251c8d1e88d81aed03c292.gif" width="20" height="20" style="margin-right: 5px; vertical-align: middle;"> Relatos
                 </div>
             </a>
+            <a href="videos.html" style="text-decoration: none; color: inherit;">
+                <div class="nav-btn">
+                    <img src="https://i.pinimg.com/originals/11/73/11/1173111f04ec6e8afb8a4126294b1207.gif" alt="gif caveira" width="30" height="30">
+                    <span class="nav-icon"></span> Vídeos
+                </div>
+            </a>
+            <div class="nav-btn" style="border-color: #00ff66; color: #00ff66; background: rgba(0, 255, 102, 0.1);">
+                <img src="https://i.pinimg.com/originals/7a/d4/f3/7ad4f38f0f6fa256a54ff9a92f28f63b.gif" width="20" height="20" style="margin-right: 5px; vertical-align: middle;"> Fotos (Você está aqui)
+            </div>
             <a href="forum.html" style="text-decoration: none;">
                 <div class="nav-btn">
                     <img src="https://i.pinimg.com/originals/be/c3/34/bec33481c435256921f05b78c19158f3.gif" width="20" height="20" style="margin-right: 5px; vertical-align: middle;"> Fórum
                 </div>
             </a>
-            <div class="nav-btn" style="border-color: #00ff66; color: #00ff66; background: rgba(0, 255, 102, 0.1);">
-                <img src="https://i.pinimg.com/originals/7a/d4/f3/7ad4f38f0f6fa256a54ff9a92f28f63b.gif" width="20" height="20" style="margin-right: 5px; vertical-align: middle;"> Fotos (Atual)
-            </div>
+            <a href="../index.html" style="text-decoration: none; color: inherit;">
+                <div class="nav-btn">
+                    <img src="https://i.pinimg.com/originals/1e/09/97/1e09974e521beef418e8ed3a0a6f8db7.gif" alt="gif cruz" width="30" height="30">
+                    <span class="nav-icon" style="font-size: 20px;"></span> Voltar pra Home
+                </div>
+            </a>
         </div>
 
         <div class="gallery-wrapper">
@@ -315,7 +131,6 @@
         </div> 
     </div>
 
-    <!-- CONTAINER DO LIGHTBOX -->
     <div id="lightbox">
         <div class="lightbox-close" title="Fechar">X</div>
         <div class="lightbox-content">
@@ -323,7 +138,6 @@
         </div>
     </div>
 
-    <!-- SCRIPT DA GALERIA -->
     <script>
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');

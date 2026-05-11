@@ -2,98 +2,151 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>O BAMBUZAL</title>
+    <title>ARQUIVO :: O OBSERVADOR</title>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <style>
+        /* --- ESTILOS DO DOCUMENTO (WEB 1.0 - TEAL THEME) --- */
         body {
-            background-color: #020a02;
-            color: #a3c2a3;
-            font-family: 'Times New Roman', serif;
-            padding: 15px;
-            background-image: url('https://www.transparenttextures.com/patterns/black-scales.png'); /* Efeito escamoso obscuro */
-        }
-        .diary-entry { font-size: 18px; text-align: justify; line-height: 1.4; }
-        .wet-text { color: #66ff66; text-shadow: 0px 0px 5px #00ff00; font-style: italic; }
-        .update-box {
-            border: 3px double #ffcc00;
-            background: rgba(50, 50, 0, 0.8);
-            padding: 15px;
-            margin-top: 40px;
-            color: #fff;
+            background-color: #010808; /* Fundo base escuro */
+            color: #93b8b5; /* Texto principal (Teal acinzentado claro) */
             font-family: 'VT323', monospace;
-            font-size: 22px;
-        }
-        .scary-video {
-            width: 100%;
-            border: 5px solid #111;
-            box-shadow: 0px 0px 20px #00ff00;
-            margin: 20px 0;
+            font-size: 24px;
+            line-height: 1.4;
+            padding: 20px;
+            /* Textura super sutil para quebrar o fundo liso */
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
         }
 
-       /* --- BARRA DE ROLAGEM WINDOWS XP FIXA --- */
-        ::-webkit-scrollbar { 
-            width: 17px !important; 
-            height: 17px !important; 
-            background: #f0f0ea !important; 
-            border-left: 1px solid #e1e0db !important; 
+        .document-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #021313; /* Fundo do "papel" */
+            border: 2px solid #1f5c5c;
+            padding: 30px;
+            /* Sombra dura clássica do início da web */
+            box-shadow: 6px 6px 0px #000; 
         }
-        ::-webkit-scrollbar-track { 
-            background: #f0f0ea !important; 
+
+        /* Cabeçalho do Arquivo */
+        .doc-header {
+            border-bottom: 2px dashed #1f5c5c;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
         }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to right, #c0d7f2 0%, #9cbef0 50%, #87aef0 51%, #a7cbf2 100%) !important;
-            border: 1px solid #6385d0 !important; 
-            border-radius: 4px !important; 
+
+        .doc-title {
+            font-size: 38px;
+            color: #00ff66;
+            margin: 0 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-transform: uppercase;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to right, #d4e6f9 0%, #b5cff4 50%, #a4c4f4 51%, #c0daf9 100%) !important;
+
+        /* Bloco de Informações do Arquivo */
+        .doc-meta {
+            background-color: #010a0a;
+            border: 1px solid #0f3d3d;
+            padding: 10px 15px;
+            font-size: 20px;
+            color: #669999;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
         }
-        /* Oculta os botões com as setas para focar na barra principal arredondada */
-        ::-webkit-scrollbar-button { 
-            display: none !important; 
+
+        .meta-label { color: #3d8c8c; }
+
+        /* Corpo do Texto */
+        .doc-content p {
+            margin-bottom: 15px;
+            text-align: justify;
         }
-        ::-webkit-scrollbar-corner { 
-            background: #f0f0ea !important; 
+
+        /* Destaque tipo "Marca-texto" opaco */
+        .highlight {
+            background-color: #0f3d3d;
+            color: #d1e0e0;
+            padding: 0 6px;
         }
+
+        /* Agrupamento de Mídia Clássico */
+        fieldset {
+            border: 1px solid #1f5c5c;
+            padding: 15px;
+            margin: 30px 0;
+            background-color: #010a0a;
+        }
+
+        legend {
+            color: #5cb3b3;
+            font-size: 22px;
+            padding: 2px 12px;
+            border: 1px solid #1f5c5c;
+            background: #021313;
+        }
+
+        .eof-marker {
+            text-align: center;
+            color: #1f5c5c;
+            margin-top: 20px;
+            font-size: 20px;
+            letter-spacing: 2px;
+        }
+
+        /* --- BARRA DE ROLAGEM WINDOWS XP FIXA --- */
+        ::-webkit-scrollbar { width: 17px !important; height: 17px !important; background: #f0f0ea !important; border-left: 1px solid #e1e0db !important; }
+        ::-webkit-scrollbar-track { background: #f0f0ea !important; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(to right, #c0d7f2 0%, #9cbef0 50%, #87aef0 51%, #a7cbf2 100%) !important; border: 1px solid #6385d0 !important; border-radius: 4px !important; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(to right, #d4e6f9 0%, #b5cff4 50%, #a4c4f4 51%, #c0daf9 100%) !important; }
+        ::-webkit-scrollbar-button { display: none !important; }
+        ::-webkit-scrollbar-corner { background: #f0f0ea !important; }
     </style>
 </head>
 <body>
 
-    <div style="display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px;">
-        <img src="https://cyber.dabamos.de/88x31/toxic.gif" alt="toxic">
-        <h2 style="margin: 0; color: #44aa44; font-family: 'VT323'; font-size: 30px;">REGISTRO_FAMILIAR_198X.TXT</h2>
-    </div>
-
-    <div class="diary-entry">
-        <p>rs da história. como deu pra perceber, não temos homens na família, mas nem sempre foi assim. eu nunca conheci meu avô, mas minha vó sempre falou muito dele, indo contra oq minha mãe dizia, que sempre quis esquecer essa parte da vida delas. a vó dizia como ele sempre foi um homem bruto, sem sensibilidade ou delicadezas, chucro mesmo. trabalhou com as próprias mãos a vida toda, o bicho era casca grossa.</p>
+    <div class="document-wrapper">
         
-        <p>até que na chegada do 8º mês de gestação da minha vó, grávida da minha mãe, a personalidade do meu vô mudou completamente, de um dia pro outro ele deixou sua casca, sua brutalidade e indelicadeza pra trás e se tornou um novo homem, fazendo arranjos de flores, cartas de amor, cafés da manhã na cama... parecia um sonho como dizia minha vó.</p>
-
-        <p>porém ela conhecia ele melhor do que ninguém, e sabia que algo de estranho estava acontecendo. junto dessa mudança repentina, alguns comportamentos estranhos foram surgindo… além dos novos costumes amorosos, o bom humor dele por vezes era intoxicante e até perturbador, como se não fosse algo natural, mas sim <span class="wet-text">uma ideia plantada na sua cabeça</span>; outras vezes ele voltava do trabalho molhado, corpo, cabelo, roupas, tudo. quando minha vó questionava, ele desviava o assunto.</p>
-
-        <p>com o passar do tempo as vezes minha vó acordava de madrugada e meu vô simplesmente não estava na casa, por vezes ela fingia dormir quando escutava ele voltar, e apenas ouvia seu corpo molhado pingando no chão de casa. o pior dos casos foi quando ela se enfiou no meio no breu absoluto da mata fechada, e encontrou meu avô completamente nu e com seu corpo encharcado, conversando com um bambuzal.</p>
-
-        <div>
-            <img src="https://i.pinimg.com/originals/a1/b9/7a/a1b97a2e0a811c7fa159677b1029c1d2.gif" width="100" alt="creepy eyes">
+        <div class="doc-header">
+            <h1 class="doc-title">
+                <img src="https://cyber.dabamos.de/88x31/eye.gif" alt="olho">
+                REGISTRO_01 :: O OBSERVADOR
+            </h1>
+            
+            <div class="doc-meta">
+                <div><span class="meta-label">AUTOR:</span> Paula</div>
+                <div><span class="meta-label">DATA:</span> 04/10/2007</div>
+                <div><span class="meta-label">LOCAL:</span> Residência (Corredor)</div>
+                <div><span class="meta-label">STATUS:</span> Anomalia Recorrente</div>
+            </div>
         </div>
 
-        <p>ele dizia algo sobre “uma beleza infinita”, “verdades sussurradas entre a vegetação”, “um chamado vindo do fundo”... ele dizia que suas palavras eram de um homem louco, mas seu comportamento era sóbrio e estável… e isso era o que mais assustava ela. ele nunca mais voltou.</p>
-        
-        <p>minha mãe nunca fala do meu pai. ele nos deixou quando eu era bebê... acho que a mata tem certo gosto por homens brutos.</p>
-    </div>
+        <div class="doc-content">
+            <p>Eu não sei exatamente quando começou. No início pensei que fosse coisa da minha cabeça, mas não era. Todas as noites ele aparece.</p>
+            
+            <p>A primeira vez que consegui ver com clareza foi no fim do corredor da minha casa. Foi aí que eu percebi a silhueta. Parada e imóvel, como se estivesse me esperando.</p>
+            
+            <p>Depois de um tempo, ele sumiu. Achei que tinha acabado, que tinha ido embora. <span class="highlight">Mas não foi.</span></p>
 
-    <div class="update-box">
-        <marquee scrollamount="15" style="color: red; font-size: 26px;">⚠ ATUALIZAÇÃO 12/12/2007 ⚠ ATUALIZAÇÃO 12/12/2007 ⚠</marquee>
-        <p>tomei coragem e entrei na mata. depois da minha vida inteira escutando histórias e morrendo de medo, eu finalmente entrei.</p>
-        <p>ontem fui de noite, e vi… vi coisas que eu não sei se consigo descrever… acho que encontrei o bambuzal que minha vó falou… ele parecia, de alguma maneira, vivo, parecia respirar… parecia me chamar.</p>
-        <p style="color: #66ff66;">os bambus estalavam e respiravam, como se houvesse ossos e carne ao invés de cana dentro deles…</p>
+            <p>Agora ele aparece todas as noites. Nunca fala. Nunca se aproxima demais. Só observa.</p>
 
-        <video class="scary-video" controls autoplay loop muted>
-            <source src="SEU_VIDEO_DO_BAMBU.mp4" type="video/mp4">
-        </video>
+            <p>Consigo sentir quando ele está por perto. No canto das paredes, do outro lado do box durante meu banho, atrás de mim enquanto escovo meus dentes, no banco de trás do meu carro.</p>
 
-        <p>peguei a câmera e tentei registrar alguma coisa, mas não sei se deu certo, o som do vídeo deu problema por alguma razão que não sei explicar.</p>
-        <p>depois disso parece ter algo me chamando de volta pra lá… mas eu não posso. empacotei minhas coisas e essa semana ainda vou embora. boa sorte nessa cidade maldita.</p>
+            <fieldset>
+                <legend>Anexo: CAPTURA_0410.AVI</legend>
+                <div style="text-align: center; padding: 5px; background: #000; border: 1px solid #0f3d3d;">
+                    <video width="100%" controls>
+                        <source src="SEU_VIDEO_AQUI.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="eof-marker">
+            [ END OF FILE ]
+        </div>
+
     </div>
 
 </body>

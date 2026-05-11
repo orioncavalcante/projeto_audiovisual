@@ -1,0 +1,193 @@
+/* --- ESTILOS ESPECÍFICOS DA GALERIA --- */
+
+.top-nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    background-color: #000;
+    border: 2px solid #231635;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-shadow: inset 1px 1px 0 #555, inset -1px -1px 0 #111;
+    flex-wrap: wrap;
+}
+
+.top-nav .nav-btn {
+    margin: 0;
+    padding: 5px 15px;
+    font-size: 22px;
+}
+
+.gallery-wrapper {
+    background-color: #0b0616;
+    border: 4px solid #000;
+    box-shadow: inset 1px 1px 0 #a18ab6, inset 2px 2px 0 #4a3a70, inset -2px -2px 0 #231635;
+    padding: 20px;
+}
+
+.gallery-header {
+    text-align: center;
+    border-bottom: 2px dashed #4a3a70;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.gallery-header h2 {
+    color: #ff0055;
+    font-size: 32px;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    text-shadow: 2px 2px 0px #000;
+}
+
+.gallery-desc {
+    color: #d1c8e3;
+    font-size: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.3;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 10px;
+}
+
+.photo-card {
+    background: #05020a;
+    border: 2px solid #231635;
+    padding: 8px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.8);
+    transition: border-color 0.2s ease; 
+}
+
+.photo-card:hover {
+    border-color: #00ff66; 
+}
+
+.photo-frame {
+    width: 100%;
+    height: 200px;
+    background: #000;
+    border: 1px solid #111;
+    overflow: hidden;
+    margin-bottom: 10px;
+    cursor: pointer; 
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.1) brightness(0.9);
+    transition: filter 0.2s ease;
+}
+
+.photo-frame:hover img {
+    filter: contrast(1) brightness(1); 
+}
+
+.photo-caption {
+    font-size: 18px;
+    color: #00ff66;
+    line-height: 1.2;
+    border-top: 1px dashed #231635;
+    padding-top: 5px;
+}
+
+.photo-meta {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 3px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* --- LIGHTBOX (TELA CHEIA E INVESTIGAÇÃO) --- */
+#lightbox {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    overflow: hidden; 
+}
+
+#lightbox.active {
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-content {
+    background: #000;
+    padding: 5px;
+    border: 2px solid #333;
+    box-shadow: 0px 0px 40px rgba(0,0,0,1);
+    display: flex;
+    position: relative;
+}
+
+#lightbox-img {
+    /* FORÇA A IMAGEM A FICAR GIGANTE (90% DA TELA) */
+    width: 90vw;
+    height: 90vh;
+    object-fit: contain; /* Faz a imagem crescer sem amassar/distorcer */
+    display: block;
+    cursor: zoom-in; 
+    image-rendering: pixelated; 
+    transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1); 
+    transform-origin: center center; 
+}
+
+/* Zoom triplicado */
+#lightbox-img.zoomed {
+    transform: scale(3);
+    cursor: zoom-out;
+}
+
+/* --- EFEITO DE CARREGAMENTO (BLOCO GIGANTES / CORROMPIDO) --- */
+.dial-up-effect {
+    animation: dialUpLoad 2.5s steps(8) forwards;
+}
+
+@keyframes dialUpLoad {
+    0% { 
+        clip-path: inset(0 0 100% 0); 
+        filter: grayscale(100%) brightness(1.5) contrast(2); 
+    }
+    100% { 
+        clip-path: inset(0 0 0 0); 
+        filter: grayscale(0%) brightness(1) contrast(1); 
+    }
+}
+
+/* Botão Fechar */
+.lightbox-close {
+    position: fixed;
+    top: 25px;
+    right: 35px;
+    background: #000;
+    color: #fff;
+    border: 2px solid #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0px 0px 15px #000;
+    z-index: 10001; 
+    transition: 0.2s;
+}
+
+.lightbox-close:hover {
+    background: #ff0055;
+    transform: scale(1.1);
+}

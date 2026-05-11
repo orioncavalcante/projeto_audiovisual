@@ -2,108 +2,151 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>A FLORESTA QUE BRILHA</title>
+    <title>ARQUIVO :: O OBSERVADOR</title>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <style>
+        /* --- ESTILOS DO DOCUMENTO (WEB 1.0 - TEAL THEME) --- */
         body {
-            background-color: #1a0000;
-            color: #ff9999;
+            background-color: #010808; /* Fundo base escuro */
+            color: #93b8b5; /* Texto principal (Teal acinzentado claro) */
             font-family: 'VT323', monospace;
-            padding: 10px;
-            margin: 0;
-            border: 5px inset #ff0000;
+            font-size: 24px;
+            line-height: 1.4;
+            padding: 20px;
+            /* Textura super sutil para quebrar o fundo liso */
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
         }
-        .header {
-            background: #ff0000;
-            color: #000;
-            text-align: center;
-            font-size: 30px;
-            font-weight: bold;
-            padding: 5px;
+
+        .document-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #021313; /* Fundo do "papel" */
+            border: 2px solid #1f5c5c;
+            padding: 30px;
+            /* Sombra dura clássica do início da web */
+            box-shadow: 6px 6px 0px #000; 
+        }
+
+        /* Cabeçalho do Arquivo */
+        .doc-header {
+            border-bottom: 2px dashed #1f5c5c;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .doc-title {
+            font-size: 38px;
+            color: #00ff66;
+            margin: 0 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
             text-transform: uppercase;
         }
-        .content { padding: 15px; font-size: 22px; }
-        .highlight { background: #000; color: #ff0000; padding: 2px; border: 1px solid #ff0000; }
-        .deep-web-ad {
-            border: 2px dashed #ff0055;
-            padding: 10px;
-            margin: 20px 0;
-            text-align: center;
-            background: #000;
+
+        /* Bloco de Informações do Arquivo */
+        .doc-meta {
+            background-color: #010a0a;
+            border: 1px solid #0f3d3d;
+            padding: 10px 15px;
+            font-size: 20px;
+            color: #669999;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
         }
-        .abrupt-cut {
-            font-size: 40px;
-            color: red;
-            background: black;
-            text-align: center;
-            font-weight: bold;
-            padding: 50px 10px;
-            animation: flash 0.1s infinite;
+
+        .meta-label { color: #3d8c8c; }
+
+        /* Corpo do Texto */
+        .doc-content p {
+            margin-bottom: 15px;
+            text-align: justify;
         }
-        @keyframes flash { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
+
+        /* Destaque tipo "Marca-texto" opaco */
+        .highlight {
+            background-color: #0f3d3d;
+            color: #d1e0e0;
+            padding: 0 6px;
+        }
+
+        /* Agrupamento de Mídia Clássico */
+        fieldset {
+            border: 1px solid #1f5c5c;
+            padding: 15px;
+            margin: 30px 0;
+            background-color: #010a0a;
+        }
+
+        legend {
+            color: #5cb3b3;
+            font-size: 22px;
+            padding: 2px 12px;
+            border: 1px solid #1f5c5c;
+            background: #021313;
+        }
+
+        .eof-marker {
+            text-align: center;
+            color: #1f5c5c;
+            margin-top: 20px;
+            font-size: 20px;
+            letter-spacing: 2px;
+        }
 
         /* --- BARRA DE ROLAGEM WINDOWS XP FIXA --- */
-        ::-webkit-scrollbar { 
-            width: 17px !important; 
-            height: 17px !important; 
-            background: #f0f0ea !important; 
-            border-left: 1px solid #e1e0db !important; 
-        }
-        ::-webkit-scrollbar-track { 
-            background: #f0f0ea !important; 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to right, #c0d7f2 0%, #9cbef0 50%, #87aef0 51%, #a7cbf2 100%) !important;
-            border: 1px solid #6385d0 !important; 
-            border-radius: 4px !important; 
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to right, #d4e6f9 0%, #b5cff4 50%, #a4c4f4 51%, #c0daf9 100%) !important;
-        }
-        /* Oculta os botões com as setas para focar na barra principal arredondada */
-        ::-webkit-scrollbar-button { 
-            display: none !important; 
-        }
-        ::-webkit-scrollbar-corner { 
-            background: #f0f0ea !important; 
-        }
+        ::-webkit-scrollbar { width: 17px !important; height: 17px !important; background: #f0f0ea !important; border-left: 1px solid #e1e0db !important; }
+        ::-webkit-scrollbar-track { background: #f0f0ea !important; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(to right, #c0d7f2 0%, #9cbef0 50%, #87aef0 51%, #a7cbf2 100%) !important; border: 1px solid #6385d0 !important; border-radius: 4px !important; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(to right, #d4e6f9 0%, #b5cff4 50%, #a4c4f4 51%, #c0daf9 100%) !important; }
+        ::-webkit-scrollbar-button { display: none !important; }
+        ::-webkit-scrollbar-corner { background: #f0f0ea !important; }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <marquee scrollamount="20">☠ ☠ ☠ A FLORESTA QUE BRILHA - TAINÃ OCCULT BAZAAR ☠ ☠ ☠</marquee>
-    </div>
-
-    <div style="text-align: center; margin: 10px 0;">
-        <img src="https://cyber.dabamos.de/88x31/pentagram.gif" alt="penta">
-        <img src="https://cyber.dabamos.de/88x31/hell.gif" alt="hell">
-        <img src="https://cyber.dabamos.de/88x31/pentagram.gif" alt="penta">
-    </div>
-
-    <div class="content">
-        <h1 style="color: #ff0000; text-decoration: underline;">TEM ALGO NA MATA</h1>
+    <div class="document-wrapper">
         
-        <p>somos 4 em casa, eu, minha irmã mais nova, minha mãe e minha avó. moramos na mesma casa desde que minha mãe nasceu, e desde a infância da minha vó, uma casa simples bem perto da floresta de Tainã, cercada de uma mata alta e ainda por cima a maioria das estradas são de terra… o acesso é um pouco complicado. as idas pra escola sempre foram um inferno.</p>
-        
-        <div class="deep-web-ad">
-            <h3 style="margin:0; color: yellow;">>>> ARQUIVO VISUAL RESTRITO <<<</h3>
-            <video width="90%" controls style="margin-top: 10px; border: 3px double red; filter: invert(100%);">
-                <source src="SEU_VIDEO_DA_FLORESTA.mp4" type="video/mp4">
-            </video>
-            <p style="font-size: 16px; color: #666;">(Se a tela sangrar, não feche os olhos)</p>
+        <div class="doc-header">
+            <h1 class="doc-title">
+                <img src="https://cyber.dabamos.de/88x31/eye.gif" alt="olho">
+                REGISTRO_01 :: O OBSERVADOR
+            </h1>
+            
+            <div class="doc-meta">
+                <div><span class="meta-label">AUTOR:</span> Paula</div>
+                <div><span class="meta-label">DATA:</span> 04/10/2007</div>
+                <div><span class="meta-label">LOCAL:</span> Residência (Corredor)</div>
+                <div><span class="meta-label">STATUS:</span> Anomalia Recorrente</div>
+            </div>
         </div>
 
-        <p>todos conhecem as histórias da floresta Tainã, a floresta que brilha, como costumam chamar. nós em casa, sempre tentamos ignorar e lidar com as estranhezas que nos cercam, barulhos estranhos vindo do meio da mata, ventos que parecem uma respiração profunda e antiga, outros parecem melodias macabras, <span class="highlight">vultos no meio da escuridão</span>, barulho de galhos quebrando no chão, pontos luminosos parecidos com olhos de gato no meio da noite…</p>
+        <div class="doc-content">
+            <p>Eu não sei exatamente quando começou. No início pensei que fosse coisa da minha cabeça, mas não era. Todas as noites ele aparece.</p>
+            
+            <p>A primeira vez que consegui ver com clareza foi no fim do corredor da minha casa. Foi aí que eu percebi a silhueta. Parada e imóvel, como se estivesse me esperando.</p>
+            
+            <p>Depois de um tempo, ele sumiu. Achei que tinha acabado, que tinha ido embora. <span class="highlight">Mas não foi.</span></p>
 
-        <p>minha mãe sempre se esforçou pra desmistificar essas histórias, dizendo que eram animais ou coisas da nossa cabeça, mas é impossível negar oq vemos na floresta.</p>
+            <p>Agora ele aparece todas as noites. Nunca fala. Nunca se aproxima demais. Só observa.</p>
 
-        <p>e agora chegamos na parte esquisita (mais ainda</p>
-    </div>
+            <p>Consigo sentir quando ele está por perto. No canto das paredes, do outro lado do box durante meu banho, atrás de mim enquanto escovo meus dentes, no banco de trás do meu carro.</p>
 
-    <div class="abrupt-cut">
-        FATAL ERROR: CONEXÃO CORTADA PELO USUÁRIO. <br>
-        ELES ACHARAM O ROTEADOR.
+            <fieldset>
+                <legend>Anexo: CAPTURA_0410.AVI</legend>
+                <div style="text-align: center; padding: 5px; background: #000; border: 1px solid #0f3d3d;">
+                    <video width="100%" controls>
+                        <source src="SEU_VIDEO_AQUI.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="eof-marker">
+            [ END OF FILE ]
+        </div>
+
     </div>
 
 </body>
