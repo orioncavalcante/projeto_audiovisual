@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { margin: 0; background: #000; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; }
+        video { width: 100%; height: 100%; outline: none; }
+    </style>
+</head>
+<body>
+    <video id="vid" src="../../../src/video/relato3.mp4" autoplay></video>
+
+    <script>
+        const vid = document.getElementById('vid');
+
+        window.addEventListener('message', function(e) {
+            switch(e.data) {
+                case 'play':  vid.play();   break;
+                case 'pause': vid.pause();  break;
+                case 'stop':
+                    vid.pause();
+                    vid.currentTime = 0;
+                    break;
+                case 'prev':
+                    vid.currentTime = Math.max(0, vid.currentTime - 10);
+                    break;
+                case 'next':
+                    vid.currentTime = Math.min(vid.duration, vid.currentTime + 10);
+                    break;
+            }
+        });
+
+        // Avisa o parent quando o estado muda
+        vid.addEventListener('play',  () => window.parent.postMessage('state:playing', '*'));
+        vid.addEventListener('pause', () => window.parent.postMessage('state:paused',  '*'));
+        vid.addEventListener('ended', () => window.parent.postMessage('state:ended',   '*'));
+    </script>
+</body>
+</html>

@@ -4,98 +4,20 @@
     <meta charset="UTF-8">
     <title>ARQUIVO :: O OBSERVADOR</title>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles/wmp.css">
     <style>
-        /* --- ESTILOS DO DOCUMENTO (WEB 1.0 - TEAL THEME) --- */
-        body {
-            background-color: #010808; /* Fundo base escuro */
-            color: #93b8b5; /* Texto principal (Teal acinzentado claro) */
-            font-family: 'VT323', monospace;
-            font-size: 24px;
-            line-height: 1.4;
-            padding: 20px;
-            /* Textura super sutil para quebrar o fundo liso */
-            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-        }
-
-        .document-wrapper {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #021313; /* Fundo do "papel" */
-            border: 2px solid #1f5c5c;
-            padding: 30px;
-            /* Sombra dura clássica do início da web */
-            box-shadow: 6px 6px 0px #000; 
-        }
-
-        /* Cabeçalho do Arquivo */
-        .doc-header {
-            border-bottom: 2px dashed #1f5c5c;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
-
-        .doc-title {
-            font-size: 38px;
-            color: #00ff66;
-            margin: 0 0 15px 0;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-transform: uppercase;
-        }
-
-        /* Bloco de Informações do Arquivo */
-        .doc-meta {
-            background-color: #010a0a;
-            border: 1px solid #0f3d3d;
-            padding: 10px 15px;
-            font-size: 20px;
-            color: #669999;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5px;
-        }
-
+        body { background-color: #010808; color: #93b8b5; font-family: 'VT323', monospace; font-size: 24px; line-height: 1.4; padding: 20px; background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); }
+        .document-wrapper { max-width: 800px; margin: 0 auto; background-color: #021313; border: 2px solid #1f5c5c; padding: 30px; box-shadow: 6px 6px 0px #000; }
+        .doc-header { border-bottom: 2px dashed #1f5c5c; padding-bottom: 15px; margin-bottom: 20px; }
+        .doc-title { font-size: 38px; color: #00ff66; margin: 0 0 15px 0; display: flex; align-items: center; gap: 15px; text-transform: uppercase; }
+        .doc-meta { background-color: #010a0a; border: 1px solid #0f3d3d; padding: 10px 15px; font-size: 20px; color: #669999; display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
         .meta-label { color: #3d8c8c; }
-
-        /* Corpo do Texto */
-        .doc-content p {
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-
-        /* Destaque tipo "Marca-texto" opaco */
-        .highlight {
-            background-color: #0f3d3d;
-            color: #d1e0e0;
-            padding: 0 6px;
-        }
-
-        /* Agrupamento de Mídia Clássico */
-        fieldset {
-            border: 1px solid #1f5c5c;
-            padding: 15px;
-            margin: 30px 0;
-            background-color: #010a0a;
-        }
-
-        legend {
-            color: #5cb3b3;
-            font-size: 22px;
-            padding: 2px 12px;
-            border: 1px solid #1f5c5c;
-            background: #021313;
-        }
-
-        .eof-marker {
-            text-align: center;
-            color: #1f5c5c;
-            margin-top: 20px;
-            font-size: 20px;
-            letter-spacing: 2px;
-        }
-
-        /* --- BARRA DE ROLAGEM WINDOWS XP FIXA --- */
+        .doc-content p { margin-bottom: 15px; text-align: justify; }
+        .highlight { background-color: #0f3d3d; color: #d1e0e0; padding: 0 6px; }
+        fieldset { border: 1px solid #1f5c5c; padding: 15px; margin: 30px 0; background-color: #010a0a; }
+        legend { color: #5cb3b3; font-size: 22px; padding: 2px 12px; border: 1px solid #1f5c5c; background: #021313; }
+        .alert-block { background-color: #1a0505; border: 1px solid #4d1414; color: #d96666; padding: 15px; text-align: center; margin-top: 40px; font-size: 26px; }
+        .eof-marker { text-align: center; color: #1f5c5c; margin-top: 20px; font-size: 20px; letter-spacing: 2px; }
         ::-webkit-scrollbar { width: 17px !important; height: 17px !important; background: #f0f0ea !important; border-left: 1px solid #e1e0db !important; }
         ::-webkit-scrollbar-track { background: #f0f0ea !important; }
         ::-webkit-scrollbar-thumb { background: linear-gradient(to right, #c0d7f2 0%, #9cbef0 50%, #87aef0 51%, #a7cbf2 100%) !important; border: 1px solid #6385d0 !important; border-radius: 4px !important; }
@@ -105,17 +27,14 @@
     </style>
 </head>
 <body>
-
     <div class="document-wrapper">
-        
         <div class="doc-header">
             <h1 class="doc-title">
-                <img src="https://cyber.dabamos.de/88x31/eye.gif" alt="olho">
+                <img src="https://i.pinimg.com/originals/33/af/b0/33afb0d7846cb7ac20d9adc7a9823004.gif" width="45" alt="olho">
                 REGISTRO_01 :: O OBSERVADOR
             </h1>
-            
             <div class="doc-meta">
-                <div><span class="meta-label">AUTOR:</span> Paula</div>
+                <div><span class="meta-label">AUTOR:</span> Ícaro</div>
                 <div><span class="meta-label">DATA:</span> 04/10/2007</div>
                 <div><span class="meta-label">LOCAL:</span> Residência (Corredor)</div>
                 <div><span class="meta-label">STATUS:</span> Anomalia Recorrente</div>
@@ -124,30 +43,47 @@
 
         <div class="doc-content">
             <p>Eu não sei exatamente quando começou. No início pensei que fosse coisa da minha cabeça, mas não era. Todas as noites ele aparece.</p>
-            
             <p>A primeira vez que consegui ver com clareza foi no fim do corredor da minha casa. Foi aí que eu percebi a silhueta. Parada e imóvel, como se estivesse me esperando.</p>
-            
             <p>Depois de um tempo, ele sumiu. Achei que tinha acabado, que tinha ido embora. <span class="highlight">Mas não foi.</span></p>
-
             <p>Agora ele aparece todas as noites. Nunca fala. Nunca se aproxima demais. Só observa.</p>
-
             <p>Consigo sentir quando ele está por perto. No canto das paredes, do outro lado do box durante meu banho, atrás de mim enquanto escovo meus dentes, no banco de trás do meu carro.</p>
 
-            <fieldset>
-                <legend>Anexo: CAPTURA_0410.AVI</legend>
-                <div style="text-align: center; padding: 5px; background: #000; border: 1px solid #0f3d3d;">
-                    <video width="100%" controls>
-                        <source src="SEU_VIDEO_AQUI.mp4" type="video/mp4">
-                    </video>
+            <div style="display: flex; justify-content: center; margin: 30px 0;">
+                
+                <div class="photo-card" style="width: 320px; background-color: #05020a; border: 2px solid #231635; padding: 8px; box-shadow: 3px 3px 10px rgba(0,0,0,0.8);">
+                    
+                    <a href="../videos/relatos_videos/video2.html" class="open-wmp" style="text-decoration: none;">
+                        
+                        <div class="photo-frame" style="position: relative; width: 100%; height: 200px; background: #000; border: 1px solid #111; overflow: hidden; margin-bottom: 10px;">
+                            
+                            <video src="../../src/video/relato2.mp4#t=0.1" preload="metadata" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.6; filter: contrast(1.2) brightness(0.8); pointer-events: none;"></video>
+                            
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #00ff66; font-size: 50px; text-shadow: 3px 3px #000; pointer-events: none;" class="blink">
+                                ▶
+                            </div>
+                        </div>
+                        
+                        <div class="photo-caption" style="font-size: 18px; color: #00ff66; line-height: 1.2; border-top: 1px dashed #231635; padding-top: 5px;">
+                            <div class="photo-meta" style="font-size: 14px; color: #666; margin-bottom: 3px; display: flex; justify-content: space-between;">
+                                <span style="color: #888;">CAPTURA_0410.AVI</span> 
+                                <span style="color: #888;">04/10/2007</span>
+                            </div>
+                            <span style="color: #00ff66;">Silhueta no fim do corredor. (Clique para abrir)</span>
+                        </div>
+                        
+                    </a>
+                    
                 </div>
-            </fieldset>
+            </div>
         </div>
 
-        <div class="eof-marker">
-            [ END OF FILE ]
+        <div class="alert-block">
+            Eu não sei o que ele quer.<br>
+            Eu não sei o que ele é.
         </div>
 
+        <div class="eof-marker">[ END OF FILE ]</div>
     </div>
-
+    <script src="../../js/wmp.js"></script>
 </body>
 </html>

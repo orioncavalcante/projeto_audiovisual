@@ -62,22 +62,66 @@ const wmpTriggers = document.querySelectorAll('.open-wmp');
 
 wmpTriggers.forEach(trigger => {
     trigger.addEventListener('click', function(e) {
-        e.preventDefault(); 
+        e.preventDefault();
         const targetUrl = this.getAttribute('href');
         wmpIframe.src = targetUrl;
         wmpModal.classList.add('active');
+        isPlaying = false;
+        document.querySelector('.wmp-play-btn').classList.remove('is-playing');
     });
 });
 
 // Lógica de fechar
 wmpCloseBtn.addEventListener('click', function() {
     wmpModal.classList.remove('active');
-    wmpIframe.src = ''; 
+    wmpIframe.src = '';
+    isPlaying = false;
+    document.querySelector('.wmp-play-btn').classList.remove('is-playing');
 });
 
 wmpModal.addEventListener('click', function(e) {
     if (e.target === wmpModal) {
         wmpModal.classList.remove('active');
         wmpIframe.src = '';
+        isPlaying = false;
+        document.querySelector('.wmp-play-btn').classList.remove('is-playing');
     }
+});
+
+// --- CONTROLES DO WMP ---
+
+let isPlaying = false;
+
+function sendToVideo(command) {
+    if (wmpIframe.contentWindow) {
+        wmpIframe.contentWindow.postMessage(command, '*');
+    }
+}
+
+// Recebe o estado atual do vídeo para atualizar o botão play/pause
+window.addEventListener('message', function(e) {
+    const playBtn = document.querySelector('.wmp-play-btn');
+    if (e.data === 'state:playing') {
+        isPlaying = true;
+        playBtn.classList.add('is-playing');
+    } else if (e.data === 'state:paused' || e.data === 'state:ended') {
+        isPlaying = false;
+        playBtn.classList.remove('is-playing');
+    }
+});
+
+document.querySelector('.wmp-play-btn').addEventListener('click', function() {
+    sendToVideo(isPlaying ? 'pause' : 'play');
+});
+
+document.querySelector('.wmp-stop-btn').addEventListener('click', function() {
+    sendToVideo('stop');
+});
+
+document.querySelector('.wmp-prev-btn').addEventListener('click', function() {
+    sendToVideo('prev');
+});
+
+document.querySelector('.wmp-next-btn').addEventListener('click', function() {
+    sendToVideo('next');
 });
